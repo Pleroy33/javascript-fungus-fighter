@@ -45,6 +45,8 @@ function onAttackSceptor(event) {//create function
     fungusHP = fungusHP - 14;                       //math logic for AP and HP
     myAP = myAP - 12;
     console.log('fungus is:', fungusHP, 'myAp is:', myAP);//console log to see results of logic
+    iWon();
+    fungusWon();
     render();//update DOM
 
 }
@@ -55,8 +57,10 @@ function onAttackEntangle(event) {
     fungusHP = fungusHP - 9;
     myAP = myAP - 23;
     console.log('fungus is:', fungusHP, 'myAp is:', myAP);
-    render();
 
+    iWon();
+    fungusWon();
+    render();//update DOM
 }
 
 function onAttackBlade(event) {
@@ -65,7 +69,10 @@ function onAttackBlade(event) {
     fungusHP = fungusHP - 47;
     myAP = myAP - 38;
     console.log('fungus is:', fungusHP, 'myAp is:', myAP)
-    render();
+    iWon();
+    fungusWon();
+    render();//update DOM}
+
 }
 
 function onAttackFire(event) {
@@ -74,23 +81,59 @@ function onAttackFire(event) {
     fungusHP = fungusHP - 25;
     myAP = myAP - 33;
     console.log('fungus is:', fungusHP, 'myAp is:', myAP);
-    render();
-
+    iWon();
+    fungusWon();
+    render();//update DOM
 }
 
-console.log('hi', myAP);
-console.log('bye', fungusHP);
+//console.log('hi', myAP);
+//console.log('bye', fungusHP);
 
 function render() {
-    const myAPTotal = document.getElementById("ap-meter");
-    const fungusHPTotal =document.getElementById("hp-meter");
-    )
+    let myAPTotal = document.getElementsByClassName("ap-text")[0];
+    let fungusHPTotal = document.getElementsByClassName("hp-text")[0];
+    console.log(myAPTotal);
+    console.log(fungusHPTotal);
+    myAPTotal.innerHTML = myAP + 'AP';
+    fungusHPTotal.innerHTML = fungusHP + 'HP'
+
+
 }
 
+function iWon() {
+    if (fungusHP < 0) {
+        fungusHP = 0;
+        let deadClass = document.getElementsByClassName("freaky-fungus walk")[0];
+        deadClass.classList = "freaky-fungus dead"
+    }
+}
+function fungusWon() {
+    if (myAP < 0) {
+        myAP = 0
+        let jumpClass = document.getElementsByClassName("freaky-fungus walk")[0]
+        jumpClass.classList = "freaky-fungus jump"
+
+        let disableArcBtn = document.getElementsByClassName("attack-btn arcane-scepter")[0]
+        console.log('disable arcane button:', disableArcBtn);
+        disableArcBtn.disabled = true;
+
+        let disableEntBtn = document.getElementsByClassName("attack-btn entangle");
+        console.log('disable attack button:', disableEntBtn);
+        disableEntBtn.disabled = true;
+
+        let disableBladeBtn = document.getElementsByClassName("attack-btn dragon-blade");
+        console.log('disable blade button:', disableBladeBtn);
+        disableBladeBtn.disabled = true;
+
+        let disableFireBtn = document.getElementsByClassName("attack-btn star-fire");
+        console.log('disable fire button:', disableFireBtn);
+        disableEntBtn.disabled = true;
 
 
 
 
 
+    }
 
+}
 
